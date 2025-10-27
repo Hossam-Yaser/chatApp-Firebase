@@ -74,7 +74,7 @@ Follow these steps to set up and run the project locally:
 
 2. **Navigate to the project directory**
    ```bash
-   cd Chat-App
+   cd chatApp-Firebase-
    ```
 
 3. **Install dependencies**
