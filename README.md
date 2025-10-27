@@ -8,7 +8,7 @@ Built with **Flutter** and **Dart**, it’s designed for performance, simplicity
 
 ## 🎥 Demo
 
-<img src="demo/notesappdemo.gif"  alt="Weather App Demo" />
+<img src="demo/demo.gif" width="640" height="480" alt="Chat App Demo" />
 
 ---
 
