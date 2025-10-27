@@ -69,12 +69,12 @@ Follow these steps to set up and run the project locally:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Hossam-Yaser/Chat-App.git
+   git clone https://github.com/Hossam-Yaser/chatApp-Firebase.git
    ```
 
 2. **Navigate to the project directory**
    ```bash
-   cd chatApp-Firebase-
+   cd chatApp-Firebase
    ```
 
 3. **Install dependencies**
