@@ -90,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           setState(() {});
                           if (formKey.currentState!.validate()) {
                             try {
-                              FirebaseServices(
+                              await FirebaseServices(
                                 email: email!,
                                 password: password!,
                               ).registerUser();
