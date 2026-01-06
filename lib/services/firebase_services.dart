@@ -12,11 +12,4 @@ class FirebaseServices {
       password: password,
     );
   }
-
-  Future<UserCredential> loginUser() async {
-    return await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-  }
 }

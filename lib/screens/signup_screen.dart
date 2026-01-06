@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:chat_app/constants.dart';
-import 'package:chat_app/helper/showSnackBar.dart';
+import 'package:chat_app/helper/showsnackbar.dart';
 import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/services/firebase_services.dart';
 import 'package:chat_app/widgets/custom_text_button.dart';
