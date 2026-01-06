@@ -1,5 +1,6 @@
 import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/screens/chat_screen.dart';
+import 'package:chat_app/screens/cubits/chat_cubit/chat_cubit.dart';
 import 'package:chat_app/screens/cubits/login_cubit/login_cubit.dart';
 import 'package:chat_app/screens/cubits/register_cubit/register_cubit.dart';
 import 'package:chat_app/screens/login_screen.dart';
@@ -44,5 +45,6 @@ final Map<String, WidgetBuilder> _routes = {
       BlocProvider(create: (context) => LoginCubit(), child: LoginScreen()),
   SignupScreen.id: (_) =>
       BlocProvider(create: (context) => RegisterCubit(), child: SignupScreen()),
-  ChatScreen.id: (_) => const ChatScreen(),
+  ChatScreen.id: (_) =>
+      BlocProvider(create: (context) => ChatCubit(), child: ChatScreen()),
 };

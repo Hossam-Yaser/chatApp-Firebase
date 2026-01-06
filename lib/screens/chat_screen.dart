@@ -1,7 +1,10 @@
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/screens/cubits/chat_cubit/chat_cubit.dart';
 import 'package:chat_app/widgets/chatbubble.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -12,20 +15,13 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  CollectionReference messages = FirebaseFirestore.instance.collection(
-    kFirestoreMessagesCollection,
-  );
-  final Stream<QuerySnapshot> _chatStream = FirebaseFirestore.instance
-      .collection(kFirestoreMessagesCollection)
-      .orderBy(kSendTime, descending: true)
-      .snapshots(includeMetadataChanges: true);
-
   TextEditingController messageController = TextEditingController();
   final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    var userEmail = ModalRoute.of(context)!.settings.arguments;
+    final user = FirebaseAuth.instance.currentUser;
+    final userEmail = user?.email;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -53,7 +49,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
-                stream: _chatStream,
+                stream: BlocProvider.of<ChatCubit>(context).reciveMessage(),
                 builder:
                     (
                       BuildContext context,
@@ -93,12 +89,10 @@ class _ChatScreenState extends State<ChatScreen> {
             TextField(
               controller: messageController,
               onSubmitted: (value) {
-                if (value.trim().isNotEmpty) {
-                  messages.add({
-                    'message': value,
-                    'sendTime': FieldValue.serverTimestamp(),
-                    'sender': userEmail,
-                  });
+                if (value.isNotEmpty) {
+                  BlocProvider.of<ChatCubit>(
+                    context,
+                  ).sendMessage(message: value, email: userEmail ?? "");
                   messageController.clear();
                   _scrollController.animateTo(
                     0,
@@ -113,11 +107,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   onPressed: () {
                     final value = messageController.text.trim();
                     if (value.isNotEmpty) {
-                      messages.add({
-                        'message': value,
-                        'sendTime': FieldValue.serverTimestamp(),
-                        'sender': userEmail,
-                      });
+                      BlocProvider.of<ChatCubit>(
+                        context,
+                      ).sendMessage(message: value, email: userEmail ?? "");
                       messageController.clear();
                       _scrollController.animateTo(
                         0,

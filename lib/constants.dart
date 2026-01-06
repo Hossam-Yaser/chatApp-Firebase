@@ -9,3 +9,4 @@ const usernameValidatorForm = r'^[a-zA-Z0-9_]{3,}$';
 const String kFirestoreMessagesCollection = 'messages';
 const String kMessage = "message";
 const String kSendTime = "sendTime";
+const String kSender = "sender";
