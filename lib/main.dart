@@ -1,6 +1,7 @@
 import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/screens/cubits/login_cubit/login_cubit.dart';
+import 'package:chat_app/screens/cubits/register_cubit/register_cubit.dart';
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,6 +42,7 @@ class _AppRoot extends StatelessWidget {
 final Map<String, WidgetBuilder> _routes = {
   LoginScreen.id: (_) =>
       BlocProvider(create: (context) => LoginCubit(), child: LoginScreen()),
-  SignupScreen.id: (_) => const SignupScreen(),
+  SignupScreen.id: (_) =>
+      BlocProvider(create: (context) => RegisterCubit(), child: SignupScreen()),
   ChatScreen.id: (_) => const ChatScreen(),
 };

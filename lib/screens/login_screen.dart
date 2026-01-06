@@ -87,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                                 email: emailAddress,
                                 password: password,
                               );
-                            } else {}
+                            }
                           },
                           child: Text(
                             'Login',
